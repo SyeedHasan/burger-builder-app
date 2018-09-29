@@ -4,8 +4,6 @@ import React from 'react';
 import Aux from '../../hoc/Aux';
 import classes from './Layout.css';
 
-console.log(classes);
-
 const layout = (props) => (
     <Aux>
         <div>Toolbar, Sidebar, Backdrop</div> 
