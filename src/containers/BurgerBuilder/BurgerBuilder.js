@@ -29,12 +29,12 @@ class BurgerBuilder extends Component {
 
     //To fetch data off of firebase and append to state, best practice for HTTP reqs
     componentDidMount() {
-        axios.get('https://burger-builder-app-69442.firebaseio.com/ingredients.json')
+        axios.get('/ingredients.json')
             .then( response => {
                 this.setState({ingredients: response.data});
             })
             .catch(error => {
-                this.setState({error: true});
+                // this.setState({error: true});
             });
     }
 
@@ -128,6 +128,10 @@ class BurgerBuilder extends Component {
             .catch(error => {
                 this.setState({loading: false, purchasing: false});
             });
+
+        // Have access to props.history 
+        // this.props.history.push('/checkout');
+
     }
 
     render() {
@@ -158,21 +162,20 @@ class BurgerBuilder extends Component {
                 </Aux>
             );
 
-            let orderSummary = (
+            let orderSummary = 
                 <OrderSummary 
                     ingredients={this.state.ingredients}
                     price={this.state.totalPrice}
                     purchaseCancelled={this.purchaseCancelHandler}
                     purchaseContinued={this.purchaseContinueHandler}
                 />
-            );
+            
     
         }
 
         if(this.state.loading) {
             orderSummary = <Spinner />
         }
-
 
         return (
             <Aux>
@@ -186,4 +189,5 @@ class BurgerBuilder extends Component {
 
 }
 
-export default withErrorHandler(BurgerBuilder, axios);
+// export default withErrorHandler(BurgerBuilder, axios);
+export default BurgerBuilder;
